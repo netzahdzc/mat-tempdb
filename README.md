@@ -4,7 +4,7 @@
 
 ## Introduction
 
-This container takes part of the MA-Test software developed. Please refer to [GitHub](https://github.com/netzahdzc/mat-dashboard) for more information.
+This container takes part of the MA-Test software developed. Please refer to [MA-Test Dashboard](https://github.com/netzahdzc/mat-dashboard) for more information.
 
 ## Contributing
 
