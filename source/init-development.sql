@@ -1,13 +1,14 @@
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password_fiware_server';
 
 # TODO insert into data table...
+CREATE DATABASE fiware_matest;
 CREATE DATABASE matest;
 USE matest;
 
 CREATE TABLE controls
 (
 id INTEGER AUTO_INCREMENT,
-patient_id INTEGER,
+participant_id INTEGER,
 weight TEXT,
 height TEXT,
 waist_size TEXT,
@@ -24,7 +25,7 @@ Reference: ISO 8601',
 PRIMARY KEY (id)
 );
 
-CREATE TABLE patients
+CREATE TABLE participants
 (
 id INTEGER AUTO_INCREMENT,
 name TEXT,
@@ -65,7 +66,7 @@ PRIMARY KEY (id)
 CREATE TABLE tests
 (
 id INTEGER AUTO_INCREMENT,
-patient_id INTEGER,
+participant_id INTEGER,
 type_test INTEGER COMMENT 'Test types defined on this database:
 
 1 = Walking test
@@ -121,7 +122,7 @@ PRIMARY KEY (id)
 CREATE TABLE technicals
 (
 id INTEGER AUTO_INCREMENT,
-patient_id INTEGER,
+participant_id INTEGER,
 test_id INTEGER,
 mobile_model TEXT,
 mobile_brand TEXT,
@@ -174,7 +175,7 @@ PRIMARY KEY (id)
 
 CREATE TABLE sensor_linear_acceleration
 (
-patient_id INTEGER,
+participant_id INTEGER,
 test_id INTEGER,
 accuracy TEXT COMMENT 'Accuracy of the event (http://developer.android.com/reference/android/hardware/SensorManager.html#SENSOR_STATUS_ACCURACY_HIGH)',
 x TEXT,
@@ -191,7 +192,7 @@ Reference: ISO 8601'
 
 CREATE TABLE sensor_orientation
 (
-patient_id INTEGER,
+participant_id INTEGER,
 test_id INTEGER,
 azimuth TEXT,
 pitch TEXT,
@@ -219,22 +220,5 @@ Reference: ISO 8601',
 PRIMARY KEY (id)
 );
 
-ALTER TABLE controls ADD FOREIGN KEY patient_id_idxfk (patient_id) REFERENCES patients (id);
-
-ALTER TABLE patients ADD FOREIGN KEY id_idxfk (id) REFERENCES sessions (id);
-
-ALTER TABLE tests ADD FOREIGN KEY patient_id_idxfk_1 (patient_id) REFERENCES patients (id);
-
-ALTER TABLE technicals ADD FOREIGN KEY patient_id_idxfk_2 (patient_id) REFERENCES patients (id);
-
-ALTER TABLE technicals ADD FOREIGN KEY test_id_idxfk (test_id) REFERENCES tests (id);
-
-ALTER TABLE sensor_linear_acceleration ADD FOREIGN KEY patient_id_idxfk_3 (patient_id) REFERENCES patients (id);
-
-ALTER TABLE sensor_linear_acceleration ADD FOREIGN KEY test_id_idxfk_1 (test_id) REFERENCES tests (id);
-
-ALTER TABLE sensor_orientation ADD FOREIGN KEY patient_id_idxfk_4 (patient_id) REFERENCES patients (id);
-
-ALTER TABLE sensor_orientation ADD FOREIGN KEY test_id_idxfk_2 (test_id) REFERENCES tests (id);
-
-ALTER TABLE sessions ADD FOREIGN KEY user_id_idxfk (user_id) REFERENCES users (id);
+INSERT INTO participants (name, surname, gender, birthday, trash, created, last_updated) VALUES ('PlaceholderName1', 'PlaceholderSurname1', 1, '2090-01-27T00:25:51Z+02:00', 2, '2010-01-27T00:25:51Z+02:00', '2018-01-27T00:25:51Z+02:00');
+INSERT INTO participants (name, surname, gender, birthday, trash, created, last_updated) VALUES ('PlaceholderName2', 'PlaceholderSurname2', 2, '2090-01-27T00:25:51Z+02:00', 2, '2010-01-27T00:25:51Z+02:00', '2018-01-27T00:25:51Z+02:00');
