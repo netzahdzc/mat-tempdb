@@ -1,7 +1,6 @@
 GRANT ALL PRIVILEGES ON *.* TO 'root'@'localhost' IDENTIFIED BY 'password_fiware_server';
 
 # TODO insert into data table...
-CREATE DATABASE fiware_matest;
 CREATE DATABASE matest;
 USE matest;
 
